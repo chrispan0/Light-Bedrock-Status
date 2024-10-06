@@ -107,9 +107,10 @@
         <p id="map">Map: N/A</p>
         <p id="gamemode">Gamemode: N/A</p>
         <p id="server-id">Server ID: N/A</p>
+        <p"Home Coordinates: -513, 68, 61"</p>
     </div>
     <div class="footer animated">
-        Made by Chris Panetta. Forked from RDNSX. Get the original on 
+        Made by Chris Panetta. Forked from RDNSX. Get the original at 
         <a href="https://github.com/rdnsx/Bedrock-Status" target="_blank">
             GitHub <img class="git-logo" src="static/git.png" alt="GitHub Logo">
         </a>
@@ -118,7 +119,7 @@
     <script>
         // Function to fetch Minecraft server data
         function fetchServerData() {
-            const apiUrl = 'https://api.mcsrvstat.us/2/minecraft.chrispanetta.com';
+            const apiUrl = 'https://api.mcsrvstat.us/3/minecraft.chrispanetta.com';
 
             fetch(apiUrl)
                 .then(response => response.json())
