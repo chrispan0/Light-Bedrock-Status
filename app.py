@@ -5,11 +5,9 @@ import time
 
 app = Flask(__name__)
 
-MC_SERVER_DOMAIN = os.environ.get('SERVER')
-
 def get_minecraft_server_status():
     try:
-        response = requests.get(f'https://api.mcsrvstat.us/bedrock/3/{MC_SERVER_DOMAIN}')
+        response = requests.get(f'https://api.mcsrvstat.us/bedrock/3/minecraft.chrispanetta.com')
 
         data = response.json()
         if data['online']:
