@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chris and Alyssa's Server</title>
+    <title>Minecraft Server Status</title>
     <link rel="icon" href="static/favicon.ico" type="image/x-icon">
     <style>
         body {
@@ -95,9 +95,8 @@
 </head>
 <body>
     <div class="container animated">
-        <!-- Image referencing static directory -->
         <img class="centered-image" src="static/server.png" alt="Server">
-        <h1>id="server-name">Minecraft Server</h1>
+        <h1 id="server-name">Minecraft Server</h1>
         <h3>Server Status</h3>
         <p id="version">Server Version: N/A</p>
         <p id="motd">Motd: N/A</p>
@@ -107,7 +106,7 @@
         <p id="map">Map: N/A</p>
         <p id="gamemode">Gamemode: N/A</p>
         <p id="server-id">Server ID: N/A</p>
-        <p id="home-coords">Home Coordinates: -513, 68, 61</p> <!-- Static Home Coordinates -->
+        <p id="home-coords">Home Coordinates: -513, 68, 61</p> <!-- Corrected the ID here -->
     </div>
     <div class="footer animated">
         Made by Chris Panetta. Forked from RDNSX. Get the original at 
@@ -134,7 +133,7 @@
                     document.getElementById('server-name').innerText = data.hostname || "Unknown Server";
                     document.getElementById('version').innerText = `Server Version: ${data.version || "N/A"}`;
                     
-                    // Decode HTML entities for the MOTD
+                    // Decode the MOTD if it contains HTML entities
                     const motdText = data.motd ? data.motd.clean.join(" ") : "N/A";
                     document.getElementById('motd').innerText = `Motd: ${decodeHtml(motdText)}`;
 
