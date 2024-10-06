@@ -107,7 +107,7 @@
         <p id="map">Map: N/A</p>
         <p id="gamemode">Gamemode: N/A</p>
         <p id="server-id">Server ID: N/A</p>
-        <p"Home Coordinates: -513, 68, 61"</p>
+        <p id="home-coords">Home Coordinates: -513, 68, 61</p>
     </div>
     <div class="footer animated">
         Made by Chris Panetta. Forked from RDNSX. Get the original at 
@@ -133,6 +133,7 @@
                     document.getElementById('map').innerText = `Map: ${data.map ? data.map : "N/A"}`;
                     document.getElementById('gamemode').innerText = `Gamemode: ${data.gamemode ? data.gamemode : "N/A"}`;
                     document.getElementById('server-id').innerText = `Server ID: ${data.serverid || "N/A"}`;
+                    document.getElementById('home-coord').innerText = `Home Coordinates: -513, 68, 61`;
                 })
                 .catch(error => {
                     console.error('Error fetching server data:', error);
