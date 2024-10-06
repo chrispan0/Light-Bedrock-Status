@@ -22,7 +22,6 @@ def get_minecraft_server_status():
                 'map': data['map']['clean'],
                 'gamemode': data['gamemode'],
                 'server_id': data['serverid'],
-                'online_state': True
             }
     except Exception as e:
         print(f"Error: {e}")
