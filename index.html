@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Server Status</title>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            color: #c5c8c6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('static/mc.jpeg');  /* Reference to the background image in static/ */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background-color: rgba(40, 42, 46, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 100%; 
+            max-width: 800px; 
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #44ff00;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .online {
+            color: #44ff00;
+        }
+
+        .offline {
+            color: #cc6666;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animated {
+            animation: fadeIn 3s ease-out;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #c5c8c6;
+            text-decoration: none;
+        }
+
+        .git-logo {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .centered-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container animated">
+        <!-- Image referencing static directory -->
+        <img class="centered-image" src="static/server.png" alt="Server">
+        <h1 id="server-name">Minecraft Server</h1>
+        <h3>Server Status</h3>
+        <p id="version">Server Version: N/A</p>
+        <p id="motd">Motd: N/A</p>
+        <p id="max-players">Max Players: N/A</p>
+        <p id="online-players">Online Players: N/A</p>
+        <p id="hostname">Hostname: N/A</p>
+        <p id="map">Map: N/A</p>
+        <p id="gamemode">Gamemode: N/A</p>
+        <p id="server-id">Server ID: N/A</p>
+    </div>
+    <div class="footer animated">
+        Made by Chris Panetta. Forked from RDNSX. Get the original on 
+        <a href="https://github.com/rdnsx/Bedrock-Status" target="_blank">
+            GitHub <img class="git-logo" src="static/git.png" alt="GitHub Logo">
+        </a>
+    </div>
+
+    <script>
+        // Function to fetch Minecraft server data
+        function fetchServerData() {
+            const apiUrl = 'https://api.mcsrvstat.us/2/minecraft.chrispanetta.com';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('server-name').innerText = data.hostname || "Unknown Server";
+                    document.getElementById('version').innerText = `Server Version: ${data.version || "N/A"}`;
+                    document.getElementById('motd').innerText = `Motd: ${data.motd ? data.motd.clean.join(" ") : "N/A"}`;
+                    document.getElementById('max-players').innerText = `Max Players: ${data.players ? data.players.max : "N/A"}`;
+                    document.getElementById('online-players').innerText = `Online Players: ${data.players ? data.players.online : "N/A"}`;
+                    document.getElementById('hostname').innerText = `Hostname: ${data.hostname || "N/A"}`;
+                    document.getElementById('map').innerText = `Map: ${data.map ? data.map : "N/A"}`;
+                    document.getElementById('gamemode').innerText = `Gamemode: ${data.gamemode ? data.gamemode : "N/A"}`;
+                    document.getElementById('server-id').innerText = `Server ID: ${data.serverid || "N/A"}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching server data:', error);
+                });
+        }
+
+        // Fetch server data when the page loads
+        window.onload = fetchServerData;
+    </script>
+</body>
+</html>
